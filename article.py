@@ -145,6 +145,99 @@ class Author:
         return full_name
 
 
+class PDF:
+
+    def __init__(self):
+        self._link = ''
+        self._pages = ''
+        self._access_counter = ''
+
+    @property
+    def link(self):
+        return self._link
+
+    @link.setter
+    def link(self, value):
+        self._link = value
+
+    @link.deleter
+    def link(self):
+        del self._link
+
+    #########
+    @property
+    def access_counter(self):
+        return self._access_counter
+
+    @access_counter.setter
+    def access_counter(self, value):
+        self._access_counter = value
+
+    @access_counter.deleter
+    def access_counter(self):
+        del self._access_counter
+
+    #########
+    @property
+    def pages(self):
+        return self._pages
+
+    @pages.setter
+    def pages(self, value):
+        self._pages = value
+
+    @pages.deleter
+    def pages(self):
+        del self._pages
+
+
+class Copyright:
+
+    def __init__(self):
+        self._holder = ''
+        self._year = ''
+        self._license_url = ''
+
+    #########
+    @property
+    def holder(self):
+        return self._holder
+
+    @holder.setter
+    def holder(self, value):
+        self._holder = value
+
+    @holder.deleter
+    def holder(self):
+        del self._holder
+
+    #########
+    @property
+    def year(self):
+        return self._year
+
+    @year.setter
+    def year(self, value):
+        self._year = value
+
+    @year.deleter
+    def year(self):
+        del self._year
+
+    #########
+    @property
+    def license_url(self):
+        return self._license_url
+
+    @license_url.setter
+    def license_url(self, value):
+        self._license_url = value
+
+    @license_url.deleter
+    def license_url(self):
+        del self._license_url
+
+
 class Article:
 
     def __init__(self):
@@ -157,7 +250,11 @@ class Article:
         self._authors = []
         self._citations = ''
         self._sponsor = ''
-        self._copyright_holder = ''
+        self._copyright = None
+        self._journal = ''
+        self._volume = ''
+        self._issue = ''
+        self._pdf = None
 
     #########
     @property
@@ -275,15 +372,81 @@ class Article:
     def citations(self):
         del self._citations
 
-    #########
-    @property
-    def copyright_holder(self):
+    def construct_author_str(self):
         author_list = []
         for author in self.authors:
             author_list.append(author.get_full_name())
 
         return ', '.join(author_list)
 
-    @copyright_holder.deleter
-    def copyright_holder(self):
-        del self._copyright_holder
+    #########
+    @property
+    def copyright(self):
+        if not self._copyright.holder:
+            self._copyright.holder = self.construct_author_str()
+
+        return self._copyright
+
+    @copyright.setter
+    def copyright(self, value):
+        cpr_obj = Copyright()
+        cpr_obj.holder = self.construct_author_str()
+        cpr_obj.year = value['year']
+        cpr_obj.license_url = value['license_url']
+        self._copyright = cpr_obj
+
+    @copyright.deleter
+    def copyright(self):
+        del self._copyright
+
+    #########
+    @property
+    def journal(self):
+        return self._journal
+
+    @journal.setter
+    def journal(self, value):
+        self._journal = value
+
+    @journal.deleter
+    def journal(self):
+        del self._journal
+
+    #########
+    @property
+    def volume(self):
+        return self._volume
+
+    @volume.setter
+    def volume(self, value):
+        self._volume = value
+
+    @volume.deleter
+    def volume(self):
+        del self._volume
+
+    #########
+    @property
+    def issue(self):
+        return self._issue
+
+    @issue.setter
+    def issue(self, value):
+        self._issue = value
+
+    @issue.deleter
+    def issue(self):
+        del self._issue
+
+    #########
+    @property
+    def pdf(self):
+        return self._pdf
+
+    @pdf.setter
+    def pdf(self, pdf_obj):
+        self._pdf = pdf_obj
+
+    @pdf.deleter
+    def pdf(self):
+        del self._pdf
