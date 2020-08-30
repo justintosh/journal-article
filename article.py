@@ -278,15 +278,11 @@ class Article:
     #########
     @property
     def copyright_holder(self):
-        return self._copyright_holder
-
-    @copyright_holder.setter
-    def copyright_holder(self, authors):
         author_list = []
-        for author in authors:
+        for author in self.authors:
             author_list.append(author.get_full_name())
 
-        self._copyright_holder = ', '.join(author_list)
+        return ', '.join(author_list)
 
     @copyright_holder.deleter
     def copyright_holder(self):
