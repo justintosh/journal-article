@@ -144,6 +144,9 @@ class Author:
 
         return full_name
 
+    def __str__(self):
+        return self.get_full_name()
+
 
 class PDF:
 
@@ -189,6 +192,9 @@ class PDF:
     @pages.deleter
     def pages(self):
         del self._pages
+
+    def __str__(self):
+        return self._link
 
 
 class Copyright:
@@ -450,3 +456,100 @@ class Article:
     @pdf.deleter
     def pdf(self):
         del self._pdf
+
+    def __str__(self):
+        return self._title
+
+
+class Issue:
+
+    def __init__(self):
+        self._iid = ''
+        self._journal = ''
+        self._volume = ''
+        self._number = ''
+        self._year = ''
+        self._articles = []
+
+    #########
+    @property
+    def iid(self):
+        return self._iid
+
+    @iid.setter
+    def iid(self, value):
+        self._iid = value
+
+    @iid.deleter
+    def iid(self):
+        del self._iid
+
+    #########
+    @property
+    def journal(self):
+        return self._journal
+
+    @journal.setter
+    def journal(self, value):
+        self._journal = value
+
+    @journal.deleter
+    def journal(self):
+        del self._journal
+
+    #########
+    @property
+    def volume(self):
+        return self._volume
+
+    @volume.setter
+    def volume(self, value):
+        self._volume = value
+
+    @volume.deleter
+    def volume(self):
+        del self._volume
+
+    #########
+    @property
+    def number(self):
+        return self._number
+
+    @number.setter
+    def number(self, value):
+        self._number = value
+
+    @number.deleter
+    def number(self):
+        del self._number
+
+    #########
+    @property
+    def year(self):
+        return self._year
+
+    @year.setter
+    def year(self, value):
+        self._year = value
+
+    @year.deleter
+    def year(self):
+        del self._year
+
+    #########
+    @property
+    def articles(self):
+        return self._articles
+
+    @articles.setter
+    def articles(self, article_list):
+        self._articles = article_list
+
+    @articles.deleter
+    def articles(self):
+        del self._articles
+
+    def __str__(self):
+        return 'Vol. {}, No. {}, {}'.format(self._volume,
+                                            self._number,
+                                            self._year)
