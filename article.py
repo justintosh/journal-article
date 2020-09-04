@@ -153,7 +153,7 @@ class PDF:
     def __init__(self):
         self._link = ''
         self._pages = ''
-        self._access_counter = ''
+        self._access_counter = 0
 
     @property
     def link(self):
@@ -174,7 +174,7 @@ class PDF:
 
     @access_counter.setter
     def access_counter(self, value):
-        self._access_counter = value
+        self._access_counter = int(value)
 
     @access_counter.deleter
     def access_counter(self):
