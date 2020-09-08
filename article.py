@@ -469,6 +469,7 @@ class Issue:
         self._volume = ''
         self._number = ''
         self._year = ''
+        self._cover = ''
         self._articles = []
 
     #########
@@ -535,6 +536,19 @@ class Issue:
     @year.deleter
     def year(self):
         del self._year
+
+    #########
+    @property
+    def cover(self):
+        return self._cover
+
+    @cover.setter
+    def cover(self, value):
+        self._cover = value
+
+    @cover.deleter
+    def cover(self):
+        del self._cover
 
     #########
     @property
