@@ -111,9 +111,9 @@ class Author:
 
     @primary_contact.setter
     def primary_contact(self, value):
-        if value == '1':
+        if value == '1' or value == 1:
             value = True
-        elif value == '0':
+        elif value == '0' or value == 0:
             value = False
 
         self._primary_contact = value
@@ -343,6 +343,7 @@ class Article:
                 author.middle_name = value['middle_name']
                 author.last_name = value['last_name']
                 author.affiliation = value['affiliation']
+                author.primary_contact = value['primary_contact']
                 self._authors.append(author)
                 del author
         elif type(author_ld) is list:
